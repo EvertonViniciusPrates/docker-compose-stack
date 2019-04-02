@@ -3,6 +3,7 @@ version: "3"
 services:
   
   dev:
+    container_name: dev-container-server
     image: dev
     build:
       context: ./dev
@@ -15,6 +16,7 @@ services:
       - "front"
 
   front:
+    container_name: front-container-server
     image: front
     build: 
       context: ./front
@@ -24,6 +26,7 @@ services:
       - server-network
 
   database:
+    container_name: database-container-server
     image: ravendb/ravendb
     ports: 
       - "3000:8080"
