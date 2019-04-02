@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  
+  dev:
+    image: dev
+    build:
+      context: ./dev
+    ports:
+      - "2000:80"
+    networks: 
+      - server-network
+    depends_on: 
+      - "database"
+      - "front"
+
+  front:
+    image: front
+    build: 
+      context: ./front
+    ports:
+        - "80:80"
+    networks: 
+      - server-network
+
+  database:
+    image: ravendb/ravendb
+    ports: 
+      - "3000:8080"
+    networks: 
+      - server-network
+
+networks:
+  server-network:
+    driver: bridge
